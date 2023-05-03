@@ -1,0 +1,51 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "hsuanwuhub"
+version = "0.0.1.beta00"
+authors = [
+  { name="Reinforcement Learning Evolution Foundation", email="friedrichyuan19990827@gmail.com" },
+]
+description = "Model Hub of the Long-Term Evolution Project of Reinforcement Learning"
+readme = "README.md"
+requires-python = ">=3.8"
+keywords = ["Reinforcement Learning", "Algorithm", "Evolution", "Baseline", "Hub", "Datasets", "Models"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+  "huggingface_hub",
+]
+
+[project.urls]
+"Code" = "https://github.com/RLE-Foundation/HsuanwuHub"
+"Documentation" = "https://docs.hsuanwu.dev/"
+"Benchmark" = "https://hub.hsuanwu.dev/"
+"Bug Tracker" = "https://github.com/RLE-Foundation/HsuanwuHub/issues"
+
+[tool.ruff]
+# Same as Black.
+line-length = 127
+# Assume Python 3.7
+target-version = "py37"
+# See https://beta.ruff.rs/docs/rules/
+select = ["E", "F", "B", "UP", "C90", "RUF"]
+# Ignore explicit stacklevel`
+ignore = ["B028"]
+
+[tool.black]
+line-length = 127
+
+[tool.isort]
+profile = "black"
+line_length = 127
+src_paths = ["hsuanwu"]
+
+[tool.pytype]
+inputs = ["hsuanwu"]
+disable = ["pyi-error"]
