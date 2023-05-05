@@ -17,7 +17,10 @@ class Procgen(object):
     def load_scores(self) -> Dict[str, np.ndarray]:
         """Returns final performance"""
         scores_dict = dict()
+        for algo in self.procgen_data.keys():
+            scores_dict[algo] = np.array([value for _, value in self.procgen_data[algo].items()]).T
         
+        return scores_dict
 
     def load_curves(self) -> np.ndarray:
         pass

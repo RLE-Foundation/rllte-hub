@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "hsuanwuhub"
 version = "0.0.1.beta00"
 authors = [
-  { name="Reinforcement Learning Evolution Foundation", email="friedrichyuan19990827@gmail.com" },
+  { name="Reinforcement Learning Evolution Foundation", email="hsuanwudev@gmail.com" },
 ]
 description = "Model Hub of the Long-Term Evolution Project of Reinforcement Learning"
 readme = "README.md"
@@ -20,6 +20,8 @@ classifiers = [
 
 dependencies = [
   "huggingface_hub",
+  "numpy",
+  "pandas"
 ]
 
 [project.urls]
