@@ -1,0 +1,50 @@
+# @package _global_
+experiment: daac_procgen
+device: cuda:0
+seed: 1                 
+num_train_steps: 25000000
+num_steps: 256
+test_every_episodes: 10
+num_test_episodes: 10
+
+env:
+  env_id: fruitbot
+  num_envs: 64
+  device: ${device}
+  seed: ${seed}
+  gamma: 0.99
+  num_levels: 200
+  start_level: 0
+  distribution_mode: easy
+
+encoder:
+  name: EspeholtResidualEncoder
+  feature_dim: 256
+
+agent:
+  name: DAAC
+  observation_space: ...
+  action_space: ...
+  device: ${device}
+  feature_dim: ${encoder.feature_dim}
+  lr: 0.0005
+  eps: 0.00001
+  hidden_dim: 256
+  clip_range: 0.2
+  clip_range_vf: 0.2
+  policy_epochs: 1
+  value_freq: 1
+  value_epochs: 9
+  vf_coef: 0.5
+  ent_coef: 0.01
+  adv_coef: 0.25
+  aug_coef: 0.1
+  max_grad_norm: 0.5
+  network_init_method: xavier_uniform
+
+storage:
+  name: VanillaRolloutStorage
+  batch_size: 2048
+
+distribution:
+  name: Categorical

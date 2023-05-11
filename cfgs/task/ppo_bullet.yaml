@@ -33,6 +33,7 @@ agent:
   ent_coef: 0.0
   aug_coef: 0.1
   max_grad_norm: 0.5
+  network_init_method: orthogonal
 
 storage:
   name: VanillaRolloutStorage
