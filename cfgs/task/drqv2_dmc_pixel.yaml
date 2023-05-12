@@ -1,5 +1,5 @@
 # @package _global_
-experiment: sac_dmc_state
+experiment: drqv2_dmc_pixel
 device: cuda:0
 seed: 1                 
 num_train_steps: 500000
@@ -11,15 +11,13 @@ env:
   env_id: cartpole_balance
   device: ${device}
   seed: ${seed}
-  visualize_reward: true
-  from_pixels: false
 
 encoder:
-  name: IdentityEncoder
-  feature_dim: 5
+  name: TassaCnnEncoder
+  feature_dim: 50
 
 agent:
-  name: SAC
+  name: DrQv2
   observation_space: ...
   action_space: ...
   device: ${device}
@@ -27,19 +25,17 @@ agent:
   lr: 0.0001
   eps: 0.00000001
   hidden_dim: 1024
-  critic_target_tau: 0.005
+  critic_target_tau: 0.01
   update_every_steps: 2
-  log_std_range: [-5.0, 2]
-  betas: [0.9, 0.999]
-  temperature: 0.1
-  fixed_temperature: false
-  discount: 0.99
   network_init_method: orthogonal
 
 storage:
-  name: VanillaReplayStorage
+  name: NStepReplayStorage
   storage_size: ${num_train_steps}
-  batch_size: 1024
+  batch_size: 256
 
 distribution:
-  name: SquashedNormal
+  name: TruncatedNormalNoise
+
+augmentation:
+  name: RandomShift

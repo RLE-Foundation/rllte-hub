@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "hsuanwuhub"
-version = "0.0.1.beta00"
+version = "0.0.1.beta01"
 authors = [
   { name="Reinforcement Learning Evolution Foundation", email="hsuanwudev@gmail.com" },
 ]
@@ -20,6 +20,7 @@ classifiers = [
 
 dependencies = [
   "huggingface_hub",
+  "hsuanwu",
   "numpy",
   "pandas"
 ]
@@ -46,8 +47,8 @@ line-length = 127
 [tool.isort]
 profile = "black"
 line_length = 127
-src_paths = ["hsuanwu"]
+src_paths = ["hsuanwuhub"]
 
 [tool.pytype]
-inputs = ["hsuanwu"]
+inputs = ["hsuanwuhub"]
 disable = ["pyi-error"]
