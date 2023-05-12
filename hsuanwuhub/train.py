@@ -9,7 +9,7 @@ from hsuanwu.env import (make_atari_env,
                          )
 from hsuanwu.common.engine import HsuanwuEngine
 
-@hydra.main(version_base=None, config_path='cfgs', config_name='config')
+@hydra.main(version_base=None, config_path=os.path.join(os.path.dirname(os.path.realpath(__file__)), 'cfgs'), config_name='config')
 def main(cfgs):
     print(cfgs)
     if 'dmc_pixel' in cfgs.experiment:
