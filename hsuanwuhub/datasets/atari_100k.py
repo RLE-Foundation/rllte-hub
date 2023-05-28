@@ -9,7 +9,7 @@ class Atari_100k(object):
         file = hf_hub_download(
             repo_id="RLE-Foundation/HsuanwuHub",
             repo_type="dataset",
-            filename="atari_100k.json", 
+            filename="atari_100k.json",
             subfolder="datasets"
         )
         self.atari_100k_data = pd.read_json(file)
