@@ -1,2 +1,2 @@
-# Hsuanwu-benchmark
-Benchmarking implementations of Hsuanwu project.
+# rllte-benchmark
+Data hub of **rllte** project.
