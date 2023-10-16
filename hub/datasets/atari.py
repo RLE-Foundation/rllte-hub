@@ -29,14 +29,13 @@ import numpy as np
 from huggingface_hub import hf_hub_download
 
 
-class DMControl:
-    """Scores and learning cures of various RL algorithms on the full
-        DeepMind Control Suite benchmark.
-    Environment link: https://github.com/google-deepmind/dm_control
-    Number of environments: 24
-    Number of training steps: 1,000,000
+class Atari:
+    """Scores and learning cures of various RL algorithms on the full Atari benchmark.
+    Environment link: https://github.com/Farama-Foundation/Arcade-Learning-Environment
+    Number of environments: 57
+    Number of training steps: 50,000,000
     Number of seeds: 10
-    Added algorithms: [SAC, DrQ-v2]
+    Added algorithms: [PPO]
     """
 
     def __init__(self) -> None:
@@ -46,7 +45,7 @@ class DMControl:
         """Returns final performance."""
 
         file = hf_hub_download(
-            repo_id="RLE-Foundation/rllte-hub", repo_type="dataset", filename="dmc_scores.npy", subfolder="dmc"
+            repo_id="RLE-Foundation/rllte-hub", repo_type="dataset", filename="atari_scores.npy", subfolder="atari"
         )
 
         scores_dict = np.load(file, allow_pickle=True).item()
@@ -57,19 +56,15 @@ class DMControl:
         """Returns learning curves using a `Dict` of NumPy arrays:
         curves = {
             "ppo": {
-                "train": {"bigfish": np.ndarray(shape=(Number of seeds, Number of points)), ...},
-                "eval": {"bigfish": np.ndarray(shape=(Number of seeds, Number of points)), ...},
-            },
-            "daac": {
-                "train": {"bigfish": np.ndarray(shape=(Number of seeds, Number of points)), ...},
-                "eval": {"bigfish": np.ndarray(shape=(Number of seeds, Number of points)), ...},
+                "train": {"Pong-v5": np.ndarray(shape=(Number of seeds, Number of points)), ...},
+                "eval": {"Pong-v5": np.ndarray(shape=(Number of seeds, Number of points)), ...},
             },
             ...
         }
         """
 
         file = hf_hub_download(
-            repo_id="RLE-Foundation/rllte-hub", repo_type="dataset", filename="dmc_curves.npy", subfolder="dmc"
+            repo_id="RLE-Foundation/rllte-hub", repo_type="dataset", filename="atari_curves.npy", subfolder="atari"
         )
 
         curves_dict = np.load(file, allow_pickle=True).item()
