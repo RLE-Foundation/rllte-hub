@@ -3,14 +3,14 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "hsuanwuhub"
+name = "rllte-hub"
 version = "0.0.1.beta02"
 authors = [
-  { name="Reinforcement Learning Evolution Foundation", email="hsuanwudev@gmail.com" },
+  { name="Reinforcement Learning Evolution Foundation", email="rlefoundation@gmail.com" },
 ]
 description = "Model Hub of the Long-Term Evolution Project of Reinforcement Learning"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 keywords = ["Reinforcement Learning", "Algorithm", "Evolution", "Baseline", "Hub", "Datasets", "Models"]
 classifiers = [
     "Programming Language :: Python :: 3",
@@ -20,22 +20,22 @@ classifiers = [
 
 dependencies = [
   "huggingface_hub",
-  "hsuanwu",
+  "rllte-core",
   "numpy",
   "pandas"
 ]
 
 [project.urls]
-"Code" = "https://github.com/RLE-Foundation/HsuanwuHub"
-"Documentation" = "https://docs.hsuanwu.dev/"
-"Benchmark" = "https://hub.hsuanwu.dev/"
-"Bug Tracker" = "https://github.com/RLE-Foundation/HsuanwuHub/issues"
+"Code" = "https://github.com/RLE-Foundation/rllte-hub"
+"Documentation" = "https://docs.rllte.dev/"
+"Benchmark" = "https://hub.rllte.dev/"
+"Bug Tracker" = "https://github.com/RLE-Foundation/rllte-hub/issues"
 
 [tool.ruff]
 # Same as Black.
 line-length = 127
-# Assume Python 3.7
-target-version = "py37"
+# Assume Python 3.9
+target-version = "py39"
 # See https://beta.ruff.rs/docs/rules/
 select = ["E", "F", "B", "UP", "C90", "RUF"]
 # Ignore explicit stacklevel`
@@ -47,8 +47,8 @@ line-length = 127
 [tool.isort]
 profile = "black"
 line_length = 127
-src_paths = ["hsuanwuhub"]
+src_paths = ["hub"]
 
 [tool.pytype]
-inputs = ["hsuanwuhub"]
+inputs = ["hub"]
 disable = ["pyi-error"]
