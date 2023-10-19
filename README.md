@@ -1,39 +1,29 @@
-<div align=center>
-<br>
-<img src='./assets/images/hub_logo.png' style="width: 85%">
-<br>
+---
+hide:
+  - navigation
+---
 
-RLLTE Hub: Large-Scale and Comprehensive Data Hub for RL
-</div>
+# RLLTE Hub: Large-Scale and Comprehensive Data Hub for RL
+## Support list
 
-# Contents
-- [Overview](#overview)
-- [Installation](#installation)
-- [We Provide](#we-provide)
-  - [Trained RL Models](#trained-rl-models)
-  - [RL Training Logs](#rl-training-logs)
-  - [RL Training Applications](#rl-training-applications)
-  - [Demonstration Datasets](#demonstration-datasets)
-- [Cite the Project](#cite-the-project)
 
-# Overview
-**RLLTE Hub** is a repository of multifarious trained models and datasets of reinforcement learning (RL). The following table illustrates its architecture:
 
-| **Module** | **Function**|
-|:--|:--|
-|📊 `rllte.hub.datasets`|`.load_curves`: Load learning curves of an RL algorithm on a task.|
-||`.load_scores`: Load test scores of an RL algorithm on a task.|
-||`.load_demonstrations`: Load demonstrations dataset of a task.|
-|🗃️ `rllte.hub.models`|`.load_models`: Load a trained RL agent on a task. |
-|🎮 `rllte.hub.applications`|	Provide fast-APIs for training RL agents on recognized benchmarks.|
+| Benchmark | Algorithm | Remark | Reference |
+|:-|:-|:-|:-|
+|[Atari Games](https://www.jair.org/index.php/jair/article/download/10819/25823)|PPO|**10M**, 💯📊🤖|[Paper]() |
+|[DeepMind Control (Pixel)](https://arxiv.org/pdf/1801.00690)|DrQ-v2|**1M**, 💯📊🤖|[Paper](https://arxiv.org/pdf/2107.09645.pdf?utm_source=morioh.com) |
+|[DeepMind Control (State)](https://arxiv.org/pdf/1801.00690)|SAC|**10M for Humanoid, 2M else**, 💯📊🤖||
+||DDPG|🐌||
+|[Procgen Games](http://proceedings.mlr.press/v119/cobbe20a/cobbe20a.pdf)|PPO|**25M**, 💯📊🤖| [Paper](http://proceedings.mlr.press/v139/raileanu21a/raileanu21a.pdf) |
+||DAAC|🐌| [Paper](http://proceedings.mlr.press/v139/raileanu21a/raileanu21a.pdf) |
+|[MiniGrid Games](https://github.com/Farama-Foundation/Minigrid)|🐌|🐌|🐌|
 
-A complete support list for RL algorithms and environments can be found in [https://docs.rllte.dev/hub](https://docs.rllte.dev/hub).
-
-# Installation
-Developers can invoke the `hub` module in `rllte` directly. Open a terminal and install `rllte` with `pip`:
-```
-pip install rllte-core
-```
+!!! tip
+    - **🐌**: Incoming.
+    - **(25M)**: 25 million training steps.
+    - **💯Scores**: Available final scores.
+    - **📊Curves**: Available training curves.
+    - **🤖Models**: Available trained models.
 
 # We Provide
 ## Trained RL Models
@@ -82,12 +72,16 @@ print(f"mean episode length: {np.mean(episode_steps)}")
 ```
 
 ## RL Training Logs
-Download training logs of various RL algorithms on well-recognized benchmarks for academic research. The following example illustrates how to download training logs of the `PPO` agent on the [Atari](https://envpool.readthedocs.io/en/latest/env/atari.html) benchmark:
+Download training logs of various RL algorithms on well-recognized benchmarks for academic research. 
+
+### Training Curves
+
+The following example illustrates how to download training curves of the `SAC` agent on the [DeepMind Control Suite](https://github.com/google-deepmind/dm_control) benchmark:
 
 ``` py
-from rllte.hub.datasets import Atari
+from rllte.hub.datasets import DMControl
 
-curves = Atari().load_curves(agent='ppo', env_id="BeamRider-v5")
+curves = DMControl().load_curves(agent='sac', env_id="cheetah_run")
 ```
 This will return a Python `Dict` of NumPy array like:
 ```
@@ -95,7 +89,19 @@ curves
 ├── train: np.ndarray(shape=(N_SEEDS, N_POINTS))
 └── eval:  np.ndarray(shape=(N_SEEDS, N_POINTS))
 ```
-> ⚠️ Evaluation curves of Atari games are not available currently.
+
+Visualize the training curves:
+<div align="center">
+<img src='./assets/images/curves_example.png' style="width: 100%">
+</div>
+
+### Test Scores
+
+Similarly, download the final test scores via
+``` py
+scores = DMControl().load_scores(agent='sac', env_id="cheetah_run")
+```
+This will return a data array with shape `(N_SEEDS, N_POINTS)`.
 
 ## RL Training Applications
 `rllte.hub.applications` enables developers to train RL agents on well-recognized benchmarks rapidly using simple interfaces. Suppose we want to train an `PPO` agent on [Procgen](https://github.com/openai/procgen) benchmark, it suffices to write a `train.py` like:
@@ -139,16 +145,4 @@ demonstrations
 │   ├── terminateds
 │   └── truncateds
 └── ...
-```
-
-# Cite the Project
-If you use this project in your research, please cite this project like this:
-
-``` bibtex
-@article{yuan2023rllte,
-  title={RLLTE: Long-Term Evolution Project of Reinforcement Learning}, 
-  author={Mingqi Yuan and Zequn Zhang and Yang Xu and Shihao Luo and Bo Li and Xin Jin and Wenjun Zeng},
-  year={2023},
-  journal={arXiv preprint arXiv:2309.16382}
-}
 ```
