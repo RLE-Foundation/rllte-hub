@@ -1,29 +1,41 @@
----
-hide:
-  - navigation
----
+<div align=center>
+<br>
+<img src='./assets/images/hub_logo.png' style="width: 85%">
+<br>
 
-# RLLTE Hub: Large-Scale and Comprehensive Data Hub for RL
-## Support list
+RLLTE Hub: Large-Scale and Comprehensive Data Hub for Reinforcement Learning
+</div>
 
+# Contents
+- [Overview](#overview)
+- [Installation](#installation)
+- [We Provide](#we-provide)
+  - [Trained RL Models](#trained-rl-models)
+  - [RL Training Logs](#rl-training-logs)
+    - [Training Curves](#training-curves)
+    - [Test Scores](#test-scores)
+  - [RL Training Applications](#rl-training-applications)
+  - [Demonstration Datasets](#demonstration-datasets)
+- [Cite the Project](#cite-the-project)
 
+# Overview
+**RLLTE Hub** is a repository of multifarious trained models and datasets of reinforcement learning (RL). The following table illustrates its architecture:
 
-| Benchmark | Algorithm | Remark | Reference |
-|:-|:-|:-|:-|
-|[Atari Games](https://www.jair.org/index.php/jair/article/download/10819/25823)|PPO|**10M**, 💯📊🤖|[Paper]() |
-|[DeepMind Control (Pixel)](https://arxiv.org/pdf/1801.00690)|DrQ-v2|**1M**, 💯📊🤖|[Paper](https://arxiv.org/pdf/2107.09645.pdf?utm_source=morioh.com) |
-|[DeepMind Control (State)](https://arxiv.org/pdf/1801.00690)|SAC|**10M for Humanoid, 2M else**, 💯📊🤖||
-||DDPG|🐌||
-|[Procgen Games](http://proceedings.mlr.press/v119/cobbe20a/cobbe20a.pdf)|PPO|**25M**, 💯📊🤖| [Paper](http://proceedings.mlr.press/v139/raileanu21a/raileanu21a.pdf) |
-||DAAC|🐌| [Paper](http://proceedings.mlr.press/v139/raileanu21a/raileanu21a.pdf) |
-|[MiniGrid Games](https://github.com/Farama-Foundation/Minigrid)|🐌|🐌|🐌|
+| **Module** | **Function**|
+|:--|:--|
+|📊 `rllte.hub.datasets`|`.load_curves`: Load learning curves of an RL algorithm on a task.|
+||`.load_scores`: Load test scores of an RL algorithm on a task.|
+||`.load_demonstrations`: Load demonstrations dataset of a task.|
+|🗃️ `rllte.hub.models`|`.load_models`: Load a trained RL agent on a task. |
+|🎮 `rllte.hub.applications`|	Provide fast-APIs for training RL agents on recognized benchmarks.|
 
-!!! tip
-    - **🐌**: Incoming.
-    - **(25M)**: 25 million training steps.
-    - **💯Scores**: Available final scores.
-    - **📊Curves**: Available training curves.
-    - **🤖Models**: Available trained models.
+A complete support list for RL algorithms and environments can be found in [https://docs.rllte.dev/hub](https://docs.rllte.dev/hub).
+
+# Installation
+Developers can invoke the `hub` module in `rllte` directly. Open a terminal and install `rllte` with `pip`:
+```
+pip install rllte-core
+```
 
 # We Provide
 ## Trained RL Models
@@ -145,4 +157,16 @@ demonstrations
 │   ├── terminateds
 │   └── truncateds
 └── ...
+```
+
+# Cite the Project
+If you use this project in your research, please cite this project like this:
+
+``` bibtex
+@article{yuan2023rllte,
+  title={RLLTE: Long-Term Evolution Project of Reinforcement Learning}, 
+  author={Mingqi Yuan and Zequn Zhang and Yang Xu and Shihao Luo and Bo Li and Xin Jin and Wenjun Zeng},
+  year={2023},
+  journal={arXiv preprint arXiv:2309.16382}
+}
 ```
